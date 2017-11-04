@@ -1,0 +1,118 @@
+﻿@model TravelWeb.ViewModel.TravelViewModel
+
+@{
+    ViewBag.Title = "旅遊網";
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>TravelViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+</div>
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.Label("請輸入城市")
+        @*@Html.TextBoxFor(x => x.Attractionslist.FirstOrDefault().CityName, new { @Value = ""*@
+        @Html.TextBox("CityName")
+        <br />
+        @Html.Label("開始日期")
+        @*@Html.TextBoxFor(x => x.Attractionslist.FirstOrDefault().Startdate, new { @Value = "" })*@
+        @Html.TextBox("Startdate")
+        <br />
+        @Html.Label("結束日期")
+        @*@Html.TextBoxFor(x => x.Attractionslist.FirstOrDefault().Enddate, new { @Value = "" })*@
+        @Html.TextBox("Enddate")
+        <br />
+        <input type="submit" value="查詢景點"/>
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>序號</th>
+        <th>id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Particpation</th>
+        <th>CityName</th>
+        <th>Location</th>
+        <th>Add</th>
+        <th>Tel</th>
+        <th>Org</th>
+        <th>Startdate</th>
+        <th>Enddate</th>
+        <th>Charge</th>
+        <th>Cycle</th>
+        <th>Noncycle</th>
+        <th>Website</th>
+        <th>Px</th>
+        <th>Py</th>
+        <th>Travellinginfo</th>
+        <th>Parkinginfo</th>
+    </tr>
+    @foreach (var item in Model.Attractionslist)
+    {
+        <tr>
+            <td></td>
+            <td>@Html.DisplayFor(x => item.id)</td>
+            <td>@Html.DisplayFor(x => item.Name)</td>
+            <td>@Html.DisplayFor(x => item.Description)</td>
+            <td>@Html.DisplayFor(x => item.Particpation)</td>
+            <td>@Html.DisplayFor(x => item.CityName)</td>
+            <td>@Html.DisplayFor(x => item.Location)</td>
+            <td>@Html.DisplayFor(x => item.Add)</td>
+            <td>@Html.DisplayFor(x => item.Tel)</td>
+            <td>@Html.DisplayFor(x => item.Org)</td>
+            <td>@Html.DisplayFor(x => item.Startdate)</td>
+            <td>@Html.DisplayFor(x => item.Enddate)</td>
+            <td>@Html.DisplayFor(x => item.Charge)</td>
+            <td>@Html.DisplayFor(x => item.Cycle)</td>
+            <td>@Html.DisplayFor(x => item.Noncycle)</td>
+            <td>@Html.DisplayFor(x => item.Website)</td>
+            <td>@Html.DisplayFor(x => item.Px)</td>
+            <td>@Html.DisplayFor(x => item.Py)</td>
+            <td>@Html.DisplayFor(x => item.Travellinginfo)</td>
+            <td>@Html.DisplayFor(x => item.Parkinginfo)</td>
+            <td>@Html.ActionLink("還要更多", "Details", new { id = item.id })</td>
+        </tr>
+        }
+</table>
+
+<br />
+
+@*<table>
+    <tr>
+        <td>id</td>
+        <td>Picture</td>
+        <td>Picdescribe</td>
+    </tr>
+    @foreach (var item in Model.AttractionsImglist)
+    {
+        <tr>
+            <td>@Html.DisplayFor(x => item.id)</td>
+            <td><img height="200" width="300" src="@item.Picture" /></td>
+            <td>@Html.DisplayFor(x => item.Picdescribe)</td>
+        </tr>
+    }
+</table>*@
+
+<div class="row">
+    @foreach (var item in Model.AttractionsImglist)
+    {
+        <div class="col-md-4">
+            <h2>@Html.DisplayFor(x => item.id)</h2>
+            <p>
+                <img height="200" width="300" src="@item.Picture" />
+            </p>
+            <p>@Html.DisplayFor(x => item.Picdescribe)</p>
+        </div>
+    }
+</div>

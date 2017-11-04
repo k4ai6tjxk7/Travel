@@ -1,0 +1,117 @@
+﻿@model TravelWeb.ViewModel.TravelDetailViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+</style>
+
+<h2>@Model.Attractions.Name</h2>
+
+<div>
+    <h4>TravelDetailViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+</div>
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@
+
+<table class="table">
+    <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Particpation</th>
+        <th>CityName</th>
+        <th>Location</th>
+        <th>Add</th>
+        <th>Tel</th>
+        <th>Org</th>
+        <th>Startdate</th>
+        <th>Enddate</th>
+        <th>Charge</th>
+        <th>Cycle</th>
+        <th>Noncycle</th>
+        <th>Website</th>
+        <th>Px</th>
+        <th>Py</th>
+        <th>Travellinginfo</th>
+        <th>Parkinginfo</th>
+    </tr>
+    <tr>
+        <td>@Html.DisplayFor(x => x.Attractions.id)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.Name)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.Description)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.Particpation)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.CityName)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.Location)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.Add)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.Tel)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.Org)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.Startdate)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.Enddate)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.Charge)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.Cycle)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.Noncycle)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.Website)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.Px)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.Py)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.Travellinginfo)</td>
+        <td>@Html.DisplayFor(x => x.Attractions.Parkinginfo)</td>
+        <td>@Html.ActionLink("返回", "Index")</td>
+    </tr>
+    </table>
+
+@*<table>
+    <tr>
+        <td>id</td>
+        <td>Picture</td>
+        <td>Picdescribe</td>
+    </tr>
+    @foreach (var item in Model.AttractionsImglist)
+    {
+        <tr>
+            <td>@Html.DisplayFor(x => item.id)</td>
+            <td><img height="200" width="300" src="@item.Picture" /></td>
+            <td>@Html.DisplayFor(x => item.Picdescribe)</td>
+        </tr>
+    }
+</table>*@
+
+<div class="row">
+    @foreach (var item in Model.AttractionsImglist)
+    {
+        <div class="col-md-4">
+            <h2>@Html.DisplayFor(x => item.id)</h2>
+            <p>
+                <img height="200" width="300" src="@item.Picture" />
+            </p>
+            <p>@Html.DisplayFor(x => item.Picdescribe)</p>
+        </div>
+    }
+</div>
+
+<div id="map">
+
+</div>
+
+<script>
+      function initMap() {
+          var uluru = { lat: @Model.Attractions.Py, lng: @Model.Attractions.Px };
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+</script>
