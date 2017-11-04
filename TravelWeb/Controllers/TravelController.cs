@@ -49,6 +49,7 @@ namespace TravelWeb.Controllers
             };
             if (TravelViewModelData == null)
             {
+
                 return HttpNotFound();
             }
             return View(TravelViewModelData);
